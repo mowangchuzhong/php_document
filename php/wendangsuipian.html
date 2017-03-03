@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>加载碎片</title>
+</head>
+<body>
+<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("body").text("wait……");
+		alert("hello");
+		// 加载文档碎片、图形、文字等。
+		$("body").load("box.htm",function (a,status,c) {
+			console.log(status);
+			if(status=="error"){
+				$("body").text("判断加载失败");
+			}
+		})
+		// 异步加载遮障层
+		$.getScript("HelloJS.js").complete(function(){
+			sayHello();
+		})
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>验证用户名是否存在</title>
+<style>
+
+</style>
+<script>
+	//ajax可用于用户注册验证---input控件中必须有 name="userName" 属性。
+	//利用form表单的action属性是通过浏览器进行请求，跳向另外一个页面。 
+	//请求参数的名字：userName;
+	function $(id){
+		return document.getElementById(id);
+	}
+	function getName(){
+		var reg = new XMLHttpRequest();
+		reg.open("get","checkUser-ajax.php?userName="+$("idName").value,true);
+		reg.onreadystatechange=function(){
+			if(reg.readyState==4 && reg.status==200){
+				var str= reg.responseText;
+				if(str.indexOf("1")>-1){
+					$("test").innerHTML="用户名已存在";
+				}else{
+					$("test").innerHTML="可以注册";
+				}	
+			}
+		}
+		reg.send();
+	}
+	window.onload = function(){
+		$("idName").onblur=function(){
+			getName();
+		}
+	}
+</script>
+</head>
+<body>
+用户：<input id="idName" type="text" name="userName" /><span id="test"></span>
+</body>
+</html>
+

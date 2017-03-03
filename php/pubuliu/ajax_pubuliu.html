@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>瀑布流</title>
+    <style>
+        body{margin:0;}
+        #ul1{width:1080px;margin:100px auto 0;}
+        li{width:247px;list-style:none;float:left;margin-right:10px;}
+        li div{border:1px solid #000;padding:10px;margin-bottom: 10px;}
+        li div img{width:225px;display: block;}
+    </style>
+    <script src="ajax.js"></script>
+    <script type="text/javascript">
+        window.onload=function () {
+            /*ajax('get','getPic.php','cpage=1',function (data) {
+
+            });*/
+            var oUl=document.getElementById('Ul1');
+            var oLi=oUl.getElementsByTagName('li');
+            var iLen=aLi.length;
+        }
+    </script>
+</head>
+<body>
+    <ul id="ul1">
+        <li>
+            <div></div>
+        </li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>工作使用当中请求的处理</title>
+    <!--<script src="jquery.js"></script>-->
+    <script>
+    /*window.onload=function () {
+//        get方式：
+        document.getElementById("btn").onclick=function () {
+//        1 创建ajax对象
+       var xhr=null;
+       if(window.XMLHttpRequest){
+           xhr=new XMLHttpRequest();
+       }else{
+           xhr=ActiveXObject("Microsoft.XMLHTTP");
+       }
+//       2 设置参数
+        xhr.open("get","php1.php?username="+encodeURI('刘伟')+"&age=30&"+new Date().getDate(),true);
+//       url:请求服务器上的文件地址。
+//      3 发送请求
+        xhr.send();
+//        4 等待服务器返回内容。
+        xhr.onreadystatechange=function () {
+            if(xhr.readyState==4){
+                if(xhr.status==200){
+                    console.log(xhr.responseText);
+                }else{
+                    alert("出错了,Err:" + xhr.status);
+                }
+
+            }
+        }
+        }
+
+
+    };*/
+//    get方式的两个问题
+//    注意：在ie浏览器中get请求会将请求内容缓存在本地，当服务器端数据修改后，浏览器中不能得到及时更新。
+//    解决办法：1 在URL?后面连接一个随机数、时间戳。
+//              2 username中传入中文后，ie中会显示0  解决方法：把中文进行编码encodeURI;
+    window.onload=function () {
+//        get方式：
+        document.getElementById("btn").onclick=function () {
+//        1 创建ajax对象
+            var xhr=null;
+            if(window.XMLHttpRequest){
+                xhr=new XMLHttpRequest();
+            }else{
+                xhr=ActiveXObject("Microsoft.XMLHTTP");
+            }
+//       2 设置参数
+            xhr.open("post","php1.php",true);
+//       url:请求服务器上的文件地址。
+//      3 发送请求
+//       表单中：enctype:提交的数据格式,默认application/x-www-form-urlencoded
+//            设置请求头：高度客户端发送的数据编码类型。
+            xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+            xhr.send("username=leo&age=30");
+//        4 等待服务器返回内容。
+            xhr.onreadystatechange=function () {
+                if(xhr.readyState==4){
+                    if(xhr.status==200){
+                        console.log(xhr.responseText);
+                    }else{
+                        alert("出错了,Err:" + xhr.status);
+                    }
+
+                }
+            }
+        }
+
+    };
+//    post：没有缓存问题。用来提交数据。
+//    从服务器端获取数据会发生缓存问题。
+//    中文也没问题。(请求头已将发生的数据进行编码！！！)
+//        用一个事例来讲解同步和异步。
+//        $(function () {});
+//            jquery未加载完时执行其中的$方法会阻塞程序
+//      同步：前面代码会影响后面代码的执行。
+//      后面代码需要用到前面代码的内容时用同步
+/*
+ //    非阻塞(异步)：前面代码不会影响后面代码的执行
+         setTimeout(function () {
+         alert(1);
+         },2000);
+         alert(2);*/
+
+//                readyState:ajax的工作状态
+//                status:服务器状态(http状态码)
+//                0：(初始化)还没有调用open方法
+//                1：(载入)以调用send方法了，正在发送请求。
+//                2：(载入完成)send方法完成，已接收到全部响应信息
+//                3：(解析)：正在解析响应内容。
+//                4：(完成)响应内容解析完成，可以在客户端进行调用。
+//                status属性：服务器请求资源的状态。
+//                xhr.responseText(字符串)：存储ajax请求的内容
+//                xhr.responseXML:返回XML形式的内容。
+//    从后台获取json格式数据
+//        数据类型：---1 索引类型、2  key：value类型;
+    </script>
+</head>
+<body>
+<input type="button" value="增加内容" id="btn">
+</body>
+</html>

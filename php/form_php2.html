@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--
+        注意与ajax请求的区别
+        1 当前请求方式是通过浏览器进行请求提交的
+        2 服务器端只执行php代码，不执行html代码，然后将整个文档发回客户端。
+        表单：数据的提交
+            action：数据提交的地址，默认是当前页面
+            method：数据提交的地址，默认是get方式
+            1  get
+            把数据名称和数据用=连接，多个数据的话用&进行连接，然后把数据放到URL？后面。用什么方式传输，就要用什么方式接收。！！！
+            浏览器对地址栏中URL长度限制，并且在历史记录中可查看到信息。
+            传递的值为字符串形式！
+            2 post
+            理论上无限制，默认为8兆。可以更改
+            php--php.ini--post_Max-size:8M
+            通过请求头发送信息，不会被缓存。
+            可传输多种数据格式。
+            在network中可以查看两者的包装方式。
+            enctype：提交的数据格式，默认：application/x-www-form-urlencoded
+    -->
+    <!--<form action="http://localhost/1.php/1.php">-->
+    <!--<form action="http://127.0.0.1:80/1.php/1.php" methos="get">
+        账号：<input type="text" name="username"><br/>
+        密码：<input type="text" name="password">
+        <input type="submit" value="提交"/>
+    </form>-->
+    <!--post提交方式-->
+    <!--
+        数据不会显示在地址栏中
+    -->
+    <form action="1.php" method="post">
+        账号：<input type="text" name="username"><br/>
+        密码：<input type="text" name="password">
+        <input type="submit" value="提交"/>
+    </form>
+<script>
+</script>
+</body>
+</html>

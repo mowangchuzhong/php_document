@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<input type="text" id="namevalue"/><br>
+<button id="btn">Send</button>
+结果:<span id="result"></span>
+<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		//jquery  AJAX:用于异步通信
+		//jQuery中AJAX异步通信
+		$(document).ready(function(){
+			$('#btn').on('click',function () {
+				$("#result").text("请求数据中，请稍后");
+				$.post("Server12.php",{name:$("#namevalue").val()},function(data){
+					//alert("hello");用于中断请求显示之前设置的信息。
+					$("#result").text(data);
+				}).error(function () {
+					 $("#result").text("通讯有问题");
+				})
+			})
+		})
+	</script>
+</body>
+</html>

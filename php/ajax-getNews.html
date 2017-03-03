@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax动态获取新闻内容</title>
+    <script src="ajax.js"></script>
+    <script>
+    window.onload=function(){
+       document.getElementById('btn').onclick=function(){
+           /*  var xhr=null;
+            if(window.XMLHttpRequest){
+                xhr=new XMLHttpRequest();
+            }else{
+                xhr=ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xhr.open("get","getNews.php",true);
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4) {
+                    if (xhr.status = 200) {
+                        var Data = JSON.parse(xhr.responseText);
+                        console.log(Data);
+                        var oUl = document.getElementById('ul1');
+                        var str="";
+                        for (var i = 0; i< Data.length;i++){
+                            str+='<li><a href="###">'+Data[i].title+ '</a>' + '<span>' + Data[i].date + '</span></li>'
+                        }
+                        oUl.innerHTML=str;
+                    }
+                    else {
+                        alert("出错了,Err:" + xhr.status);
+                    }
+                }
+            };
+            xhr.send();
+        }*/
+    //调用ajax函数！ 
+                ajax('get', 'getNews.php', '', function (data) {
+                    var data = JSON.parse(data);
+//              将json字符串转换成json对象---结果证明：转换后为一个数组。
+                    var oUl = document.getElementById('ul1');
+                    var html = "";
+                    for (var i = 0; i < data.length; i++) {
+                        html += '<li><a href="">' + data[i].title + '</a>' + '<span>' + data[i].date + '</span></li>'
+                    }
+                    oUl.innerHTML = html;
+                });
+            }
+    /*setInterval(function () {
+        ajax();
+    },1000);*/
+
+
+//        用一个事例来讲解同步和异步。
+//        $(function () {});
+//            jquery未加载完时执行其中的$方法会阻塞程序
+//      同步：前面代码会影响后面代码的执行。
+//      后面代码需要用到前面代码的内容时用同步
+/*
+ //    非阻塞(异步)：前面代码不会影响后面代码的执行
+     setTimeout(function () {
+     alert(1);
+     },2000);
+     alert(2);*/
+//    从后台获取json格式数据
+//    数据类型：---1 索引类型、2  key：value类型;
+//    
+//    
+//    
+//    
+//    
+//    
+    }
+    </script>
+</head>
+<body>
+    <input type="button" value="增加内容" id="btn">
+    <ul id="ul1"></ul>
+</body>
+</html>
